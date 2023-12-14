@@ -1,21 +1,21 @@
 type HeaderType = {
-    titile: string
+    title: string
     num?: number
     bgColor: string
     position?: boolean
 }
 
-const Header = (props: HeaderType) => {
+const Header = ({ title, num, bgColor, position }: HeaderType) => {
     return (
         <h1
             style={{
-                backgroundColor: props.bgColor,
-                color: props.position ? 'white' : 'black',
+                backgroundColor: bgColor,
+                color: position ? 'white' : 'black',
                 padding: '15px',
             }}
         >
-            Hello World,{props.titile}
-            {props.num}
+            Hello World,{title}
+            {num}
         </h1>
     )
 }

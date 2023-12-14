@@ -24,8 +24,8 @@ const Content = () => {
 const App = () => {
     return (
         <>
-            <Header titile="App.js" num={10} bgColor="blue" position />
-            <Header titile="React.js" bgColor="purple" />
+            <Header title="App.js" num={10} bgColor="blue" position />
+            <Header title="React.js" bgColor="purple" />
             <Content />
         </>
     )
