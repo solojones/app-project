@@ -22,11 +22,20 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 //         </div>
 //     )
 // }
-
-const Header = () => {
+type HeaderType = {
+    titile: string
+    num?: number
+}
+// interface HeaderType  {
+//        titile: string
+//     }
+const Header = (props: HeaderType) => {
     return (
         <div>
-            <h1>Hello World</h1>
+            <h1>
+                Hello World,{props.titile}
+                {props.num}
+            </h1>
         </div>
     )
 }
@@ -51,7 +60,8 @@ const Content = () => {
 const App = () => {
     return (
         <>
-            <Header />
+            <Header titile="App.js" num={10} />
+            <Header titile="React.js" />
             <Content />
         </>
     )
