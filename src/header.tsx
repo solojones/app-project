@@ -1,19 +1,14 @@
+import clsx from 'clsx'
+import './header.css'
+
 type HeaderType = {
     title: string
     num?: number
-    bgColor: string
-    position?: boolean
 }
 
-const Header = ({ title, num, bgColor, position }: HeaderType) => {
+const Header = ({ title, num }: HeaderType) => {
     return (
-        <h1
-            style={{
-                backgroundColor: bgColor,
-                color: position ? 'white' : 'black',
-                padding: '15px',
-            }}
-        >
+        <h1 className={`title ${num === 10 ? 'red' : ''}`}>
             Hello World,{title}
             {num}
         </h1>
