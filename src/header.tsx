@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import classes from './header.module.scss'
+import './header.scss'
 
 type HeaderType = {
     title: string
@@ -7,8 +7,9 @@ type HeaderType = {
 }
 
 const Header = ({ title, num }: HeaderType) => {
+    console.log()
     return (
-        <h1 className={classes.title}>
+        <h1 className={title}>
             Hello World,{title}
             {num}
         </h1>

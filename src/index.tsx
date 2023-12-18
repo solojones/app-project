@@ -1,32 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Header from './header'
+import Content from './content'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
-const Content = () => {
-    return (
-        <React.Fragment>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-                eligendi eveniet quisquam voluptatum nemo ipsum culpa rerum
-                ratione odio, animi voluptate deleniti doloribus neque quaerat
-                quis eos omnis amet aperiam?
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore
-                deleniti iure eos quam assumenda fugit fuga eligendi, non
-                recusandae minus itaque quo eveniet qui corporis illo vel
-                mollitia eum voluptates!
-            </p>
-        </React.Fragment>
-    )
-}
 const App = () => {
     return (
         <>
             <Header title="App.js" num={10} />
             <Header title="React.js" />
-            <Content />
+            <Content p1="Hello wolrd 1" p2="Hello world 2" bgColor="purple" />
+            <Content p1="Hello wolrd 3" p2="Hello world 4" bgColor="red" />
+            <Content p1="Hello wolrd 5" p2="Hello world 6" bgColor="yellow" />
         </>
     )
 }
