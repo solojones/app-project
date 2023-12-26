@@ -1,10 +1,4 @@
-import {
-    Button,
-    Card,
-    CardContent,
-    TextField,
-    imageListItemClasses,
-} from '@mui/material'
+import { Button, Card, CardContent, TextField } from '@mui/material'
 import './ProductListItem.css'
 import { Component } from 'react'
 
@@ -17,29 +11,57 @@ type ProductListItemType = {
     image: string
 }
 
-class ProductListItem extends Component<ProductListItemType> {
+type State = {
+    count: number
+}
+class ProductListItem extends Component<ProductListItemType, State> {
+    constructor(props: ProductListItemType) {
+        super(props)
+        this.state = {
+            count: 1,
+        }
+        this.onIncrementClick = this.onIncrementClick.bind(this)
+        this.onDecrementClick = this.onDecrementClick.bind(this)
+    }
+    onIncrementClick() {
+        this.setState((prevState) => ({
+            count: prevState.count + 1,
+        }))
+    }
+    onDecrementClick() {
+        this.setState((prevState) => ({
+            count: prevState.count - 1,
+        }))
+    }
     render() {
+        const { title, description, type, capacity, price, image } = this.props
         return (
             <Card className="product-list-item" variant="outlined">
                 <CardContent>
                     <div className="product-img">
-                        <img src={this.props.image} alt={this.props.title} />
+                        <img src={image} alt={title} />
                     </div>
-                    <h2 className="product-title">{this.props.title}</h2>
-                    <p className="product-description">
-                        {this.props.description}
-                    </p>
+                    <h2 className="product-title">{title}</h2>
+                    <p className="product-description">{description}</p>
+                    <div className="product-features">Type:{type}</div>
                     <div className="product-features">
-                        Type:{this.props.type}
+                        Capacity: {capacity}GB
                     </div>
-                    <div className="product-features">
-                        Capacity: {this.props.capacity}GB
-                    </div>
-                    <div className="product-price">${this.props.price}</div>
+                    <div className="product-price">${price}</div>
                     <div className="product-quantity">
-                        <Button variant="outlined">-</Button>
-                        <TextField size="small" value="1" />
-                        <Button variant="outlined">+</Button>
+                        <Button
+                            variant="outlined"
+                            onClick={this.onDecrementClick}
+                        >
+                            -
+                        </Button>
+                        <TextField size="small" value={this.state.count} />
+                        <Button
+                            variant="outlined"
+                            onClick={this.onIncrementClick}
+                        >
+                            +
+                        </Button>
                     </div>
                     <div className="btns-wrap">
                         <Button variant="outlined">Add to cart</Button>
@@ -49,16 +71,5 @@ class ProductListItem extends Component<ProductListItemType> {
         )
     }
 }
-
-// const ProductListItem = ({
-//     title,
-//     description,
-//     type,
-//     capacity,
-//     price,
-//     image,
-// }: ProductListItemType) => {
-
-// }
 
 export default ProductListItem
