@@ -13,11 +13,14 @@ type ProductListItemType = {
 
 type State = {
     count: number
+    color: string
 }
 class ProductListItem extends Component<ProductListItemType, State> {
     state = {
         count: 1,
+        color: 'green',
     }
+
     onIncrementClick = () => {
         this.setState((prevState) => ({
             count: prevState.count + 1,
@@ -26,6 +29,11 @@ class ProductListItem extends Component<ProductListItemType, State> {
     onDecrementClick() {
         this.setState((prevState) => ({
             count: prevState.count - 1,
+        }))
+    }
+    changeColor = () => {
+        this.setState((prevState) => ({
+            color: prevState.color === 'green' ? 'red' : 'green',
         }))
     }
     render() {
@@ -42,6 +50,13 @@ class ProductListItem extends Component<ProductListItemType, State> {
                     <div className="product-features">
                         Capacity: {capacity}GB
                     </div>
+                    <div>
+                        Color:{''}
+                        <span className={`${this.state.color}`}>
+                            {this.state.color}
+                        </span>
+                    </div>
+                    <button onClick={this.changeColor}>Change color</button>
                     <div className="product-price">${price}</div>
                     <div className="product-quantity">
                         <Button
