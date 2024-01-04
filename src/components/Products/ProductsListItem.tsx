@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, TextField } from '@mui/material'
 import './ProductListItem.css'
-import { Component } from 'react'
+import { useState } from 'react'
 
 type ProductListItemType = {
     title: string
@@ -11,76 +11,49 @@ type ProductListItemType = {
     image: string
 }
 
-type State = {
-    count: number
-    color: string
-}
-class ProductListItem extends Component<ProductListItemType, State> {
-    state = {
-        count: 1,
-        color: 'green',
-    }
+const ProductListItem = ({
+    title,
+    description,
+    type,
+    capacity,
+    price,
+    image,
+}: ProductListItemType) => {
+    const [count, setCount] = useState<number>(1)
 
-    onIncrementClick = () => {
-        this.setState((prevState) => ({
-            count: prevState.count + 1,
-        }))
+    const onIncrementClick = () => {
+        setCount((prevState) => prevState + 1)
     }
-    onDecrementClick() {
-        this.setState((prevState) => ({
-            count: prevState.count - 1,
-        }))
+    const onDecrementClick = () => {
+        setCount((prevState) => prevState - 1)
     }
-    changeColor = () => {
-        this.setState((prevState) => ({
-            color: prevState.color === 'green' ? 'red' : 'green',
-        }))
-    }
-    render() {
-        const { title, description, type, capacity, price, image } = this.props
-        return (
-            <Card className="product-list-item" variant="outlined">
-                <CardContent>
-                    <div className="product-img">
-                        <img src={image} alt={title} />
-                    </div>
-                    <h2 className="product-title">{title}</h2>
-                    <p className="product-description">{description}</p>
-                    <div className="product-features">Type:{type}</div>
-                    <div className="product-features">
-                        Capacity: {capacity}GB
-                    </div>
-                    <div>
-                        Color:{''}
-                        <span className={`${this.state.color}`}>
-                            {this.state.color}
-                        </span>
-                    </div>
-                    <button onClick={this.changeColor}>Change color</button>
-                    <div className="product-price">${price}</div>
-                    <div className="product-quantity">
-                        <Button
-                            variant="outlined"
-                            onClick={() => this.onDecrementClick()}
-                            disabled={this.state.count <= 1}
-                        >
-                            -
-                        </Button>
-                        <TextField size="small" value={this.state.count} />
-                        <Button
-                            variant="outlined"
-                            onClick={this.onIncrementClick}
-                        >
-                            +
-                        </Button>
-                    </div>
-                    <div className="btns-wrap">
-                        <Button variant="outlined">Add to cart</Button>
-                    </div>
-                </CardContent>
-            </Card>
-        )
-    }
+    return (
+        <Card className="product-list-item" variant="outlined">
+            <CardContent>
+                <div className="product-img">
+                    <img src={image} alt={title} />
+                </div>
+                <h2 className="product-title">{title}</h2>
+                <p className="product-description">{description}</p>
+                <div className="product-features">Type:{type}</div>
+                <div className="product-features">Capacity: {capacity}GB</div>
+
+                <div className="product-price">${price}</div>
+                <div className="product-quantity">
+                    <Button variant="outlined" onClick={onDecrementClick}>
+                        -
+                    </Button>
+                    <TextField size="small" value={count} />
+                    <Button variant="outlined" onClick={onIncrementClick}>
+                        +
+                    </Button>
+                </div>
+                <div className="btns-wrap">
+                    <Button variant="outlined">Add to cart</Button>
+                </div>
+            </CardContent>
+        </Card>
+    )
 }
 
 export default ProductListItem
