@@ -20,12 +20,16 @@ const ProductListItem = ({
     image,
 }: ProductListItemType) => {
     const [count, setCount] = useState<number>(1)
+    const [color, setColor] = useState<string>('green')
 
     const onIncrementClick = () => {
         setCount((prevState) => prevState + 1)
     }
     const onDecrementClick = () => {
         setCount((prevState) => prevState - 1)
+    }
+    const changeColor = () => {
+        setColor((prevState) => (prevState === 'green' ? 'red' : 'green'))
     }
     return (
         <Card className="product-list-item" variant="outlined">
@@ -39,6 +43,10 @@ const ProductListItem = ({
                 <div className="product-features">Capacity: {capacity}GB</div>
 
                 <div className="product-price">${price}</div>
+                <p>
+                    Color:<span className={color}>{color}</span>
+                </p>
+                <button onClick={changeColor}>Change color</button>
                 <div className="product-quantity">
                     <Button variant="outlined" onClick={onDecrementClick}>
                         -
